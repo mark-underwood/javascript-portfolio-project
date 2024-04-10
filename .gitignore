@@ -1,0 +1,5 @@
+images/gitignore
+node_modules
+dist
+.parcel-cache
+.firebase
