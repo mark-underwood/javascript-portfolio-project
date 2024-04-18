@@ -1,0 +1,88 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$main-aspect-ratio: 1;
+$ctrl-aspect-ratio: 0.4;
+$first-breakpoint: md;
+$jsp-ctrl-border-radius: 1rem;
+
+//$darker-danger: rgb(220, 53, 69);
+$darker-danger: rgb(55, 13, 17);
+
+//$darker-info: rgb(13, 202, 240);
+$darker-info: rgb(3, 51, 60);
+
+html {
+    overflow: hidden;
+}
+
+body {
+    background-color: #080808;
+}
+
+// portrait
+@include media-breakpoint-up(xs) {
+    .jsp-container {
+        aspect-ratio: 9/16 auto;
+        flex-direction: row;
+    }
+    .jsp-main {
+        height: auto;
+        width: 100vw;
+    }
+    
+    .jsp-s, .jsp-e {
+        // height: 43.7%;
+        height: auto;
+        width: 50vw;
+    }
+}
+
+// landscape
+@include media-breakpoint-up(md) {
+    .jsp-container {
+        aspect-ratio: 16/9 auto;
+        flex-direction: column;
+    }
+    .jsp-main {
+        height: 100vh;
+        width: auto;
+        
+    }
+    .jsp-s, .jsp-e {
+        height: 100vh;
+        width: auto;
+    }
+}
+
+// always
+
+.jsp-main {
+    aspect-ratio: $main-aspect-ratio;
+}
+
+// .jsp-s, .jsp-e {
+//     aspect-ratio: $ctrl-aspect-ratio;
+// }
+
+.jsp-s {
+    // aspect-ratio: $ctrl-aspect-ratio;
+    background-color: $darker-danger;
+    border-top-left-radius: $jsp-ctrl-border-radius;
+    border-bottom-left-radius: $jsp-ctrl-border-radius;
+}
+
+.jsp-e {
+    // aspect-ratio: $ctrl-aspect-ratio;
+    background-color: $darker-info;
+    border-top-right-radius: $jsp-ctrl-border-radius;
+    border-bottom-right-radius: $jsp-ctrl-border-radius;
+}
+
+.jsp-square {
+    aspect-ratio: 1;
+}
+
+.jsp-center {
+    // vertical-align: middle;
+    padding: 2.0rem;
+}

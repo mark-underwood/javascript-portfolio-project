@@ -10,25 +10,68 @@
     
     <!-- 2nd: The Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="css/js-portfolio-pj.scss"  />
 
     <title>JSP Javascript Space Program</title>
 
     <!-- Finally, Boostrap Javascript plugin inside the body element at the end after the footer. -->
+    <!-- <style>
+        
+    </style> -->
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
 
+    <!-- AIO Menus and Game-->
+    <div class="jsp-container bg-dark d-flex flex-wrap">
+        <!-- left / start -->
+        <!-- color is darker bg-danger -->
+        <div class="jsp-s order-1 order-md-0">
+            <div class="container jsp-square">
+                <div class="row h-50">
+                    <div class="col-6 text-center jsp-center">
+                        <button type="button" onclick="" class="btn btn-dark rounded-circle jsp-square text-white" name="s-button-left">
+                            <h2>L</h2>
+                        </button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-6 text-center jsp-center">
+                        <button type="button" onclick="" class="btn btn-dark rounded-circle jsp-square text-white" name="s-button-up">
+                            <h2>U</h2>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-
-            </div>
-            <div class="col">
-
+        </div>
+        <!-- main -->
+        <div class="jsp-main order-0 order-md-1 bg-black text-white">
+            menus and game go in this region
+        </div>
+        <!-- right / start -->
+        <!-- color is darker bg-info -->
+        <div class="jsp-e order-2 order-md-2">
+            <div class="container jsp-square">
+                <div class="row h-50">
+                    <div class="col"></div>
+                    <div class="col-6 text-center jsp-center">
+                        <button type="button" onclick="" class="btn btn-dark rounded-circle jsp-square text-white" name="e-button-right">
+                            <h2>R</h2>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center jsp-center">
+                        <button type="button" onclick="" class="btn btn-dark rounded-circle jsp-square text-white" name="e-button-up">
+                            <h2>U</h2>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
     
     <!-- Finally, Boostrap Javascript plugin inside the body element at the end after the footer. -->
     <script src="js/js-portfolio-pj.js"></script>
