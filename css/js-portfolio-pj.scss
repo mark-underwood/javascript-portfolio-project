@@ -1,9 +1,9 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $main-aspect-ratio: 1;
-$ctrl-aspect-ratio: 0.4;
+$ctrl-aspect-ratio: 0.4 auto;
 $first-breakpoint: md;
-$jsp-ctrl-border-radius: 1rem;
+$ctrl-border-radius: 1rem;
 
 //$darker-danger: rgb(220, 53, 69);
 $darker-danger: rgb(55, 13, 17);
@@ -20,35 +20,39 @@ body {
 }
 
 // portrait
-@include media-breakpoint-up(xs) {
+// @include media-breakpoint-up(xs) {
+@media (max-aspect-ratio: 1/1) {
     .jsp-container {
-        aspect-ratio: 9/16 auto;
+        aspect-ratio: 9/16;
         flex-direction: row;
     }
     .jsp-main {
-        height: auto;
+        height: 100vw;
         width: 100vw;
     }
-    
     .jsp-s, .jsp-e {
-        // height: 43.7%;
+        // aspect-ratio: $ctrl-aspect-ratio;
         height: auto;
         width: 50vw;
     }
 }
 
 // landscape
-@include media-breakpoint-up(md) {
+// @include media-breakpoint-up($first-breakpoint) {
+@media (min-aspect-ratio: 1/1) {
     .jsp-container {
-        aspect-ratio: 16/9 auto;
+        aspect-ratio: 16/9;
         flex-direction: column;
     }
     .jsp-main {
         height: 100vh;
-        width: auto;
+        // min-width: 50vh;
+        width: 100vh;
+        // max-width: 60vh;
         
     }
     .jsp-s, .jsp-e {
+        // aspect-ratio: $ctrl-aspect-ratio;
         height: 100vh;
         width: auto;
     }
@@ -57,7 +61,8 @@ body {
 // always
 
 .jsp-main {
-    aspect-ratio: $main-aspect-ratio;
+    // aspect-ratio: $main-aspect-ratio;
+    border: 2px white;
 }
 
 // .jsp-s, .jsp-e {
@@ -65,17 +70,15 @@ body {
 // }
 
 .jsp-s {
-    // aspect-ratio: $ctrl-aspect-ratio;
     background-color: $darker-danger;
-    border-top-left-radius: $jsp-ctrl-border-radius;
-    border-bottom-left-radius: $jsp-ctrl-border-radius;
+    border-top-left-radius: $ctrl-border-radius;
+    border-bottom-left-radius: $ctrl-border-radius;
 }
 
 .jsp-e {
-    // aspect-ratio: $ctrl-aspect-ratio;
     background-color: $darker-info;
-    border-top-right-radius: $jsp-ctrl-border-radius;
-    border-bottom-right-radius: $jsp-ctrl-border-radius;
+    border-top-right-radius: $ctrl-border-radius;
+    border-bottom-right-radius: $ctrl-border-radius;
 }
 
 .jsp-square {
@@ -84,5 +87,16 @@ body {
 
 .jsp-center {
     // vertical-align: middle;
-    padding: 2.0rem;
+    // padding: 2.0rem;
+    padding: 0;
 }
+
+.jsp-ctrl-btn {
+    height: 80%;
+    width: 80%;
+    text-shadow: 0px 2px 8px darkgray;
+}
+
+// .jsp-ctrl-text {
+//     text-shadow: 0px 2px 8px black;
+// }
