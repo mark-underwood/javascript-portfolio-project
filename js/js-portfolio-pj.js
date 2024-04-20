@@ -4,7 +4,7 @@
 // Left
 function sButtonLeft() {
     console.log(`s-L: Thrust left activated.`);
-    // alert(`s-L: Thrust left off.`);
+    // alert(`s-L: Thrust left activated.`);
 }
 function sButtonLeftOff() {
     console.log(`s-L: Thrust left off.`);
