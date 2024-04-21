@@ -25,6 +25,7 @@ body {
     .jsp-container {
         aspect-ratio: 9/16;
         flex-direction: row;
+        // width: 100vw;
     }
     .jsp-main {
         height: 100vw;
@@ -32,8 +33,11 @@ body {
     }
     .jsp-s, .jsp-e {
         // aspect-ratio: $ctrl-aspect-ratio;
-        height: auto;
+        height: 56vh;
         width: 50vw;
+    }
+    .jsp-e {
+        align-self: flex-end;
     }
 }
 
@@ -43,6 +47,7 @@ body {
     .jsp-container {
         aspect-ratio: 16/9;
         flex-direction: column;
+        // height: 100vh;
     }
     .jsp-main {
         height: 100vh;
@@ -54,7 +59,10 @@ body {
     .jsp-s, .jsp-e {
         // aspect-ratio: $ctrl-aspect-ratio;
         height: 100vh;
-        width: auto;
+        width: 28vw;
+    }
+    .jsp-e {
+        align-self: flex-end;
     }
 }
 

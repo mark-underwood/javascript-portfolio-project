@@ -32,7 +32,7 @@
                 <div class="row h-50 p-0">
                     <div class="col-8 text-center jsp-square">
                         <!-- ontouchstart and ontouchend seem to be invalid. lookup js event listeners to add these dynamically by id -->
-                        <button type="button" id="sbuttonleft" onmousedown="sButtonLeft()" onpointerdown="sButtonLeft()" onmouseup="sButtonLeftOff()" onpointerup="sButtonLeftOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-left">
+                        <button type="button" id="sbuttonleft" onpointerdown="sButtonLeft()" onpointerup="sButtonLeftOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-left">
                             <div class="jsp-square jsp-center jsp-ctrl-text">
                                 <h2>L</h2>
                             </div>
@@ -43,7 +43,7 @@
                 <div class="row p-0">
                     <div class="col text-center jsp-square"></div>
                     <div class="col-8 text-center jsp-square">
-                        <button type="button" id="sbuttonup" onmousedown="sButtonUp()" ontouchstart="sButtonUp()" onmouseup="sButtonUpOff()" ontouchend="sButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-up">
+                        <button type="button" id="sbuttonup" onpointerdown="sButtonUp()" onpointerup="sButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-up">
                             <div class="jsp-square jsp-center jsp-ctrl-text">
                                 <h2>U</h2>
                             </div>
@@ -54,6 +54,7 @@
         </div>
         <!-- main -->
         <div class="jsp-main order-0 order-md-1 bg-black text-white">
+            <!-- scale down by sqr(2) -->
             <div style="transform:scale(0.7071);" class="jsp-square">
                 <div style="transform:rotate(45deg);" class="jsp-square bg-dark">
                     <div style="transform:rotate(-45deg);" class="jsp-square align-content-center">
@@ -69,7 +70,7 @@
                 <div class="row h-50 p-0">
                     <div class="col text-center jsp-square"></div>
                     <div class="col-8 text-center jsp-square">
-                        <button type="button" id="ebuttonright" onmousedown="eButtonRight()" ontouchstart="eButtonRight()" onmouseup="eButtonRightOff()" ontouchend="eButtonRightOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-right">
+                        <button type="button" id="ebuttonright" onpointerdown="eButtonRight()" onpointerup="eButtonRightOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-right">
                             <div class="jsp-square jsp-center jsp-ctrl-text">
                                 <h2>R</h2>
                             </div>
@@ -78,7 +79,7 @@
                 </div>
                 <div class="row p-0">
                     <div class="col-8 text-center jsp-square">
-                        <button type="button" id="ebuttonup" onmousedown="eButtonUp()" ontouchstart="eButtonUp()" onmouseup="eButtonUpOff()" ontouchend="eButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-up">
+                        <button type="button" id="ebuttonup" onpointerdown="eButtonUp()" onpointerup="eButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-up">
                             <div class="jsp-square jsp-center jsp-ctrl-text">
                                 <h2>U</h2>
                             </div>
