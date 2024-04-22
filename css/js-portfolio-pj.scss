@@ -1,5 +1,8 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+$jsp-container-ar-widest: 16/9;
+$jsp-container-ar-tallest: 9/16;
+$jsp-container-ar-middle: 3/4;
 $main-aspect-ratio: 1;
 $ctrl-aspect-ratio: 0.4 auto;
 $first-breakpoint: md;
@@ -19,13 +22,15 @@ body {
     background-color: #080808;
 }
 
-// portrait
-// @include media-breakpoint-up(xs) {
-@media (max-aspect-ratio: 1/1) {
+// ultra-tall portrait
+// portrait units based on viewport width
+@media (max-aspect-ratio: $jsp-container-ar-tallest) {
     .jsp-container {
-        aspect-ratio: 9/16;
+        // limit container to 9/16 tallness
+        aspect-ratio: $jsp-container-ar-tallest;
         flex-direction: row;
-        // width: 100vw;
+        width: 100vw;
+        // height: auto;
     }
     .jsp-main {
         height: 100vw;
@@ -33,21 +38,103 @@ body {
     }
     .jsp-s, .jsp-e {
         // aspect-ratio: $ctrl-aspect-ratio;
-        height: 56vh;
+        height: 56vw;
         width: 50vw;
-    }
-    .jsp-e {
-        align-self: flex-end;
     }
 }
 
-// landscape
-// @include media-breakpoint-up($first-breakpoint) {
-@media (min-aspect-ratio: 1/1) {
+// portrait to square
+// portrait units based on viewport width
+@media (min-aspect-ratio: 9/16) and (max-aspect-ratio: $jsp-container-ar-middle) {
     .jsp-container {
-        aspect-ratio: 16/9;
+        // aspect-ratio: 9/16;
+        flex-direction: row;
+        width: 100vw;
+        // height: auto;
+    }
+    .jsp-main {
+        // allow height to be smaller for near square viewport
+        max-height: 100vw;
+        width: 100vw;
+    }
+    .jsp-s, .jsp-e {
+        // aspect-ratio: $ctrl-aspect-ratio;
+        height: 56vw;
+        width: 50vw;
+    }
+}
+
+// middle or taller
+@media (max-aspect-ratio: $jsp-container-ar-middle) {
+    // based on Bootstrap order-bp-n classes
+    .jsp-tall-order-0 {
+        order: 0 !important;
+    }
+    .jsp-tall-order-1 {
+        order: 1 !important;
+    }
+    .jsp-tall-order-2 {
+        order: 2 !important;
+    }
+    .jsp-tall-order-3 {
+        order: 3 !important;
+    }
+    .jsp-tall-order-4 {
+        order: 4 !important;
+    }
+}
+// middle or wider
+@media (min-aspect-ratio: $jsp-container-ar-middle) {
+    // based on Bootstrap order-bp-n classes
+    .jsp-wide-order-0 {
+        order: 0 !important;
+    }
+    .jsp-wide-order-1 {
+        order: 1 !important;
+    }
+    .jsp-wide-order-2 {
+        order: 2 !important;
+    }
+    .jsp-wide-order-3 {
+        order: 3 !important;
+    }
+    .jsp-wide-order-4 {
+        order: 4 !important;
+    }
+}
+
+// square to landscape
+// landscape units based on viewport height
+@media (min-aspect-ratio: $jsp-container-ar-middle) and (max-aspect-ratio: $jsp-container-ar-widest) {
+    .jsp-container {
+        // aspect-ratio: 16/9;
         flex-direction: column;
-        // height: 100vh;
+        height: 100vh;
+        // width: auto;
+    }
+    .jsp-main {
+        // allow width to be smaller for near square viewport
+        height: 100vh;
+        max-width: 100vh;
+        
+    }
+    .jsp-s, .jsp-e {
+        // aspect-ratio: $ctrl-aspect-ratio;
+        height: 100vh;
+        // width: 28vw;
+        width: auto;
+    }
+}
+
+// ultra-wide landscape
+// landscape units based on viewport height
+@media (min-aspect-ratio: $jsp-container-ar-widest) {
+    .jsp-container {
+        // limit container to 16/9 wideness
+        aspect-ratio: $jsp-container-ar-widest;
+        flex-direction: column;
+        height: 100vh;
+        // width: auto;
     }
     .jsp-main {
         height: 100vh;
@@ -59,10 +146,7 @@ body {
     .jsp-s, .jsp-e {
         // aspect-ratio: $ctrl-aspect-ratio;
         height: 100vh;
-        width: 28vw;
-    }
-    .jsp-e {
-        align-self: flex-end;
+        width: 28vh;
     }
 }
 
@@ -87,6 +171,7 @@ body {
     background-color: $darker-info;
     border-top-right-radius: $ctrl-border-radius;
     border-bottom-right-radius: $ctrl-border-radius;
+    align-self: flex-end;
 }
 
 .jsp-square {

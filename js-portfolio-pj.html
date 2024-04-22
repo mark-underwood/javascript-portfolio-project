@@ -27,33 +27,35 @@
     <div class="jsp-container d-flex flex-wrap">
         <!-- left / start -->
         <!-- color is darker bg-danger -->
-        <div class="jsp-s order-1 order-md-0 p-3">
-            <div class="container jsp-square p-0">
-                <div class="row h-50 p-0">
-                    <div class="col-8 text-center jsp-square">
-                        <!-- ontouchstart and ontouchend seem to be invalid. lookup js event listeners to add these dynamically by id -->
-                        <button type="button" id="sbuttonleft" onpointerdown="sButtonLeft()" onpointerup="sButtonLeftOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-left">
-                            <div class="jsp-square jsp-center jsp-ctrl-text">
-                                <h2>L</h2>
-                            </div>
-                        </button>
+        <div class="jsp-s order-1 jsp-tall-order-1 jsp-wide-order-0 p-3">
+            <div class="container p-0">
+                <div class="jsp-square">
+                    <div class="row h-50 p-0">
+                        <div class="col-8 text-center">
+                            <!-- ontouchstart and ontouchend seem to be invalid. lookup js event listeners to add these dynamically by id -->
+                            <button type="button" id="sbuttonleft" onpointerdown="sButtonLeft()" onpointerup="sButtonLeftOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-left">
+                                <div class="jsp-square jsp-center jsp-ctrl-text">
+                                    <h2>L</h2>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col text-center"></div>
                     </div>
-                    <div class="col text-center jsp-square"></div>
-                </div>
-                <div class="row p-0">
-                    <div class="col text-center jsp-square"></div>
-                    <div class="col-8 text-center jsp-square">
-                        <button type="button" id="sbuttonup" onpointerdown="sButtonUp()" onpointerup="sButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-up">
-                            <div class="jsp-square jsp-center jsp-ctrl-text">
-                                <h2>U</h2>
-                            </div>
-                        </button>
+                    <div class="row p-0">
+                        <div class="col text-center"></div>
+                        <div class="col-8 text-center">
+                            <button type="button" id="sbuttonup" onpointerdown="sButtonUp()" onpointerup="sButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="s-button-up">
+                                <div class="jsp-square jsp-center jsp-ctrl-text">
+                                    <h2>U</h2>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- main -->
-        <div class="jsp-main order-0 order-md-1 bg-black text-white">
+        <div class="jsp-main jsp-tall-order-0 jsp-wide-order-1 bg-black text-white">
             <!-- scale down by sqr(2) -->
             <div style="transform:scale(0.7071);" class="jsp-square">
                 <div style="transform:rotate(45deg);" class="jsp-square bg-dark">
@@ -65,27 +67,29 @@
         </div>
         <!-- right / start -->
         <!-- color is darker bg-info -->
-        <div class="jsp-e order-2 order-md-2 p-3">
-            <div class="container jsp-square p-0">
-                <div class="row h-50 p-0">
-                    <div class="col text-center jsp-square"></div>
-                    <div class="col-8 text-center jsp-square">
-                        <button type="button" id="ebuttonright" onpointerdown="eButtonRight()" onpointerup="eButtonRightOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-right">
-                            <div class="jsp-square jsp-center jsp-ctrl-text">
-                                <h2>R</h2>
-                            </div>
-                        </button>
+        <div class="jsp-e jsp-tall-order-2 jsp-wide-order-2 p-3">
+            <div class="container p-0">
+                <div class="jsp-square">
+                    <div class="row h-50 p-0">
+                        <div class="col text-center"></div>
+                        <div class="col-8 text-center">
+                            <button type="button" id="ebuttonright" onpointerdown="eButtonRight()" onpointerup="eButtonRightOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-right">
+                                <div class="jsp-square jsp-center jsp-ctrl-text">
+                                    <h2>R</h2>
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="row p-0">
-                    <div class="col-8 text-center jsp-square">
-                        <button type="button" id="ebuttonup" onpointerdown="eButtonUp()" onpointerup="eButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-up">
-                            <div class="jsp-square jsp-center jsp-ctrl-text">
-                                <h2>U</h2>
-                            </div>
-                        </button>
+                    <div class="row p-0">
+                        <div class="col-8 text-center">
+                            <button type="button" id="ebuttonup" onpointerdown="eButtonUp()" onpointerup="eButtonUpOff()" class="jsp-ctrl-btn btn btn-dark rounded-circle jsp-square text-white" name="e-button-up">
+                                <div class="jsp-square jsp-center jsp-ctrl-text">
+                                    <h2>U</h2>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col text-center"></div>
                     </div>
-                    <div class="col text-center jsp-square"></div>
                 </div>
             </div>
         </div>
