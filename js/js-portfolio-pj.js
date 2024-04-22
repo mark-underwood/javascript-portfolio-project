@@ -1,5 +1,10 @@
-// Reference: https://www.sololearn.com/en/compiler-playground/WUVrS54WbnSg/
+// global button states. false is released; true is held down.
+let sButtonLeftState = false; 
+let sButtonUpState = false;
+let eButtonUpState = false;
+let eButtonRightState = false;
 
+// Reference: https://www.sololearn.com/en/compiler-playground/WUVrS54WbnSg/
 window.oncontextmenu = function(event) {
     // solution to prevent long press menu on touch devices
     // by user bbsimonbb on stackoverflow
@@ -45,11 +50,13 @@ function createEventListeners() {
 function sButtonLeftAct(event) {
     event.stopPropagation();
     console.log(`s-L: Thrust left activated.`);
+    sButtonLeftState = true;
     // alert(`s-L: Thrust left activated.`);
 }
 function sButtonLeftOff(event) {
     event.stopPropagation();
     console.log(`s-L: Thrust left off.`);
+    sButtonLeftState = false;
     // alert(`s-L: Thrust left off.`);
 }
 
@@ -57,11 +64,13 @@ function sButtonLeftOff(event) {
 function sButtonUpAct(event) {
     event.stopPropagation();
     console.log(`s-U: Thrust up activated.`);
+    sButtonUpState = true;
     // alert(`s-U: Thrust up activated.`);
 }
 function sButtonUpOff(event) {
     event.stopPropagation();
     console.log(`s-U: Thrust up off.`);
+    sButtonUpState = false;
     // alert(`s-U: Thrust up off.`);
 }
 
@@ -70,11 +79,13 @@ function sButtonUpOff(event) {
 function eButtonUpAct(event) {
     event.stopPropagation();
     console.log(`e-U: Thrust up activated.`);
+    eButtonUpState = true;
     // alert(`e-U: Thrust up activated.`);
 }
 function eButtonUpOff(event) {
     event.stopPropagation();
     console.log(`e-U: Thrust up off.`);
+    eButtonUpState = false;
     // alert(`e-U: Thrust up off.`);
 }
 
@@ -82,11 +93,13 @@ function eButtonUpOff(event) {
 function eButtonRightAct(event) {
     event.stopPropagation();
     console.log(`e-R: Thrust right activated.`);
+    eButtonRightState = true;
     // alert(`e-R: Thrust right activated.`);
 }
 function eButtonRightOff(event) {
     event.stopPropagation();
     console.log(`e-R: Thrust right off.`);
+    eButtonRightState = false;
     // alert(`e-R: Thrust right off.`);
 }
 
