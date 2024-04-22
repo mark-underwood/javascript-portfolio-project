@@ -11,7 +11,7 @@ window.oncontextmenu = function(event) {
 
 // fullscreen video - based on w3schools tutorial
 // https://www.w3schools.com/howto/howto_js_fullscreen.asp
-const jspViewport = document.getElementsById("jsp-viewport");
+const jspViewport = document.getElementById("jsp-viewport");
 function openFullscreen() {
     if (jspViewport.requestFullscreen) {
         jspViewport.requestFullscreen(); // standard fullscreen
