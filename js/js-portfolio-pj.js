@@ -9,6 +9,19 @@ window.oncontextmenu = function(event) {
     return false;
 }
 
+// fullscreen video - based on w3schools tutorial
+// https://www.w3schools.com/howto/howto_js_fullscreen.asp
+const jspViewport = document.getElementsById("jsp-viewport");
+function openFullscreen() {
+    if (jspViewport.requestFullscreen) {
+        jspViewport.requestFullscreen(); // standard fullscreen
+    } else if (jspViewport.requestFullscreen) {
+        jspViewport.webkitRequestFullscreen(); // Safari
+    } else if (jspViewport.requestFullscreen) {
+        jspViewport.msRequestFullscreen(); // Internet Explorer
+    }
+}
+
 // Start (Left side controller)
 // Left
 function sButtonLeft(event) {
