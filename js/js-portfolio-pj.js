@@ -22,52 +22,72 @@ function openFullscreen() {
     }
 }
 
+function createEventListeners() {
+    const sBtnLeft = document.getElementById("sbuttonleft");
+    sBtnLeft.addEventListener("pointerdown", sButtonLeftAct);
+    sBtnLeft.addEventListener("pointerup", sButtonLeftOff);
+
+    const sBtnUp = document.getElementById("sbuttonup");
+    sBtnUp.addEventListener("pointerdown", sButtonUpAct);
+    sBtnUp.addEventListener("pointerup", sButtonUpOff);
+
+    const eBtnUp = document.getElementById("ebuttonup");
+    eBtnUp.addEventListener("pointerdown", eButtonUpAct);
+    eBtnUp.addEventListener("pointerup", eButtonUpOff);
+
+    const eBtnRight = document.getElementById("ebuttonright");
+    eBtnRight.addEventListener("pointerdown", eButtonRightAct);
+    eBtnRight.addEventListener("pointerup", eButtonRightOff);
+}
+
 // Start (Left side controller)
 // Left
-function sButtonLeft(event) {
-    // event.stopPropagation();
+function sButtonLeftAct(event) {
+    event.stopPropagation();
     console.log(`s-L: Thrust left activated.`);
     // alert(`s-L: Thrust left activated.`);
 }
 function sButtonLeftOff(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
     console.log(`s-L: Thrust left off.`);
     // alert(`s-L: Thrust left off.`);
 }
 
 // Up
-function sButtonUp(event) {
-    // event.stopPropagation();
+function sButtonUpAct(event) {
+    event.stopPropagation();
     console.log(`s-U: Thrust up activated.`);
     // alert(`s-U: Thrust up activated.`);
 }
 function sButtonUpOff(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
     console.log(`s-U: Thrust up off.`);
     // alert(`s-U: Thrust up off.`);
 }
 
 // End (Right side controller)
 // Up
-function eButtonUp(event) {
-    // event.stopPropagation();
+function eButtonUpAct(event) {
+    event.stopPropagation();
     console.log(`e-U: Thrust up activated.`);
     // alert(`e-U: Thrust up activated.`);
 }
 function eButtonUpOff(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
     console.log(`e-U: Thrust up off.`);
     // alert(`e-U: Thrust up off.`);
 }
 
 // Right
-function eButtonRight(event) {
-    // event.stopPropagation();
+function eButtonRightAct(event) {
+    event.stopPropagation();
     console.log(`e-R: Thrust right activated.`);
     // alert(`e-R: Thrust right activated.`);
 }
 function eButtonRightOff(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
     console.log(`e-R: Thrust right off.`);
     // alert(`e-R: Thrust right off.`);
 }
+
+createEventListeners();
