@@ -7,13 +7,15 @@ $jsp-main-ar: 1;
 $jsp-ctrl-ar: 0.4 auto;
 // $first-breakpoint: md;
 $jsp-ctrl-border-radius: 1rem;
-$jsp-ctrl-font-size: 4vw;
 
 //$darker-danger: rgb(220, 53, 69);
 $darker-danger: rgb(55, 13, 17);
 
 //$darker-info: rgb(13, 202, 240);
 $darker-info: rgb(3, 51, 60);
+
+// dark is #212529
+$darker-dark: #111315;
 
 html, body {
     width: 100%;
@@ -96,7 +98,8 @@ body {
     }
 
     .jsp-ctrl-text {
-        font-size: $jsp-ctrl-font-size;
+        font-size: 8vw;
+        margin-top: 2vw;
     }
 
     ////// keep this to easily switch align center/start //////
@@ -131,7 +134,8 @@ body {
     }
 
     .jsp-ctrl-text {
-        font-size: $jsp-ctrl-font-size;
+        font-size: 4vh;
+        margin-top: 1vh;
     }
 
     // center within the window (not always viewport) when in landscape
@@ -209,6 +213,10 @@ body {
     border-top-right-radius: $jsp-ctrl-border-radius;
     border-bottom-right-radius: $jsp-ctrl-border-radius;
     align-self: flex-end;
+}
+
+.jsp-bg-darker-dark {
+    background-color: $darker-dark;
 }
 
 .jsp-square {
