@@ -1,14 +1,18 @@
+//////
+///// 2D Movement Reference: https://www.sololearn.com/en/compiler-playground/WUVrS54WbnSg/
+////
+
 // global button states. false is released; true is held down.
 let sButtonLeftState = false;
 let sButtonUpState = false;
 let eButtonUpState = false;
 let eButtonRightState = false;
 
-// Reference: https://www.sololearn.com/en/compiler-playground/WUVrS54WbnSg/
+////// solution to prevent long press menu on touch devices
+///// by user bbsimonbb on stackoverflow:
+//// https://stackoverflow.com/questions/3413683/disabling-the-context-menu-on-long-taps-on-android
 window.oncontextmenu = function(event) {
-    // solution to prevent long press menu on touch devices
-    // by user bbsimonbb on stackoverflow
-    // https://stackoverflow.com/questions/3413683/disabling-the-context-menu-on-long-taps-on-android
+    
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -26,8 +30,8 @@ function reportWindowSize() {
 window.onresize = reportWindowSize();
 ////// resize //
 
-// fullscreen video - based on w3schools tutorial
-// https://www.w3schools.com/howto/howto_js_fullscreen.asp
+////// fullscreen video - based on w3schools tutorial
+///// https://www.w3schools.com/howto/howto_js_fullscreen.asp
 function openFullscreen() {
     const jspWindow = document.getElementById('jsp-window');
     if (jspWindow.requestFullscreen) {
@@ -57,7 +61,7 @@ function createEventListeners() {
     eBtnRight.addEventListener("pointerup", eButtonRightOff);
 }
 
-// Start (Left side controller)
+/// Start (Left side controller)
 // Left
 function sButtonLeftAct(event) {
     event.stopPropagation();
@@ -86,7 +90,7 @@ function sButtonUpOff(event) {
     // alert(`s-U: Thrust up off.`);
 }
 
-// End (Right side controller)
+/// End (Right side controller)
 // Up
 function eButtonUpAct(event) {
     event.stopPropagation();
