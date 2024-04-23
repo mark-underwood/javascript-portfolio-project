@@ -1,12 +1,13 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-$jsp-container-ar-tallest: 9/16;
-$jsp-container-ar-middle: 99/100;
-$jsp-container-ar-widest: 16/9;
+$jsp-container-ar-tallest: 0.5625; // 9 by 16
+$jsp-container-ar-middle: 1;
+$jsp-container-ar-widest: 1.77777777777777777778; // 16 by 9
 $jsp-main-ar: 1;
 $jsp-ctrl-ar: 0.4 auto;
 // $first-breakpoint: md;
 $jsp-ctrl-border-radius: 1rem;
+$jsp-ctrl-font-size: 4vw;
 
 //$darker-danger: rgb(220, 53, 69);
 $darker-danger: rgb(55, 13, 17);
@@ -15,6 +16,8 @@ $darker-danger: rgb(55, 13, 17);
 $darker-info: rgb(3, 51, 60);
 
 html, body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -28,18 +31,21 @@ body {
     .jsp-container {
         // limit container to 9/16 tallness
         aspect-ratio: $jsp-container-ar-tallest;
+        width: 100%; // fill
+        height: auto; // rely on aspect ratio
         flex-direction: row;
-        width: 100vw;
-        max-height: 100vh; // no taller than viewport - unit vh
     }
     .jsp-main {
-        height: 100vw;
-        width: 100vw;
+        // min-height: 100vw;
+        // max-height: 150vw;
+        height: auto;
+        width: 100%; // viewport could be larger than window
     }
     .jsp-s, .jsp-e {
         // aspect-ratio: $jsp-ctrl-ar;
         height: 77.777vw;
-        width: 50vw;
+        // width: 50vw;
+        width: 50%;
     }
 }
 
@@ -48,70 +54,107 @@ body {
 @media (min-aspect-ratio: $jsp-container-ar-tallest) and (max-aspect-ratio: $jsp-container-ar-middle) {
     .jsp-container {
         // aspect-ratio: 9/16;
+        width: 100%; // fill
+        height: 100%; // fill
         flex-direction: row;
-        width: 100vw;
-        max-height: 100vh; // no taller than viewport - unit vh
     }
     .jsp-main {
         // allow height to be smaller for near square viewport
-        min-height: 80vw;
-        max-height: 100vw;
-        width: 100vw;
+        height: auto;
+        width: 100%;
     }
     .jsp-s, .jsp-e {
         // aspect-ratio: $jsp-ctrl-ar;
-        min-height: 20vw;
-        max-height: 77.777vw;
-        width: 50vw;
+        // min-height: 20vw;
+        height: 77.777vw;
+        // max-height: 77.777vw;
+        // width: 50vw;
+        width: 50%;
     }
 }
 
 // middle or taller
 @media (max-aspect-ratio: $jsp-container-ar-middle) {
     // based on Bootstrap order-bp-n classes
-    .jsp-tall-order-0 {
+    .order-jsp-tall-0 {
         order: 0 !important;
     }
-    .jsp-tall-order-1 {
+    .order-jsp-tall-1 {
         order: 1 !important;
     }
-    .jsp-tall-order-2 {
+    .order-jsp-tall-2 {
         order: 2 !important;
     }
-    .jsp-tall-order-3 {
+    .order-jsp-tall-3 {
         order: 3 !important;
     }
-    .jsp-tall-order-4 {
+    .order-jsp-tall-4 {
         order: 4 !important;
+    }
+    .order-jsp-tall-5 {
+        order: 5 !important;
+    }
+
+    .jsp-ctrl-text {
+        font-size: $jsp-ctrl-font-size;
+    }
+
+    ////// keep this to easily switch align center/start //////
+    // keep content at the top (not always viewport) when in portrait
+    .jsp-window, .jsp-container {
+        // if one or both of these are 'center', jsp-container will be centered vertically.
+        // if both of these are 'start', jsp-container will be at the top.
+        align-content: center;
+        justify-content: center;
     }
 }
 // middle or wider
 @media (min-aspect-ratio: $jsp-container-ar-middle) {
     // based on Bootstrap order-bp-n classes
-    .jsp-wide-order-0 {
+    .order-jsp-wide-0 {
         order: 0 !important;
     }
-    .jsp-wide-order-1 {
+    .order-jsp-wide-1 {
         order: 1 !important;
     }
-    .jsp-wide-order-2 {
+    .order-jsp-wide-2 {
         order: 2 !important;
     }
-    .jsp-wide-order-3 {
+    .order-jsp-wide-3 {
         order: 3 !important;
     }
-    .jsp-wide-order-4 {
+    .order-jsp-wide-4 {
         order: 4 !important;
     }
+    .order-jsp-wide-5 {
+        order: 5 !important;
+    }
 
-    // center within the viewport when in landscape
-    .jsp-viewport {
+    .jsp-ctrl-text {
+        font-size: $jsp-ctrl-font-size;
+    }
+
+    // center within the window (not always viewport) when in landscape
+    .jsp-window, .jsp-container {
         align-content: center;
         justify-content: center;
     }
-    .jsp-container {
-        align-content: center;
-        justify-content: center;
+
+    .jsp-main {
+        min-height: 100%;
+        height: 100%; // viewport could be larger than window
+        max-height: 100%;
+        min-width: auto;
+        width: auto; // depend on aspect ratio
+        max-width: auto;
+    }
+    .jsp-s, .jsp-e {
+        min-height: 100%;
+        height: 100%;
+        max-height: 100%;
+        min-width: auto;
+        width: 30vh;
+        max-width: auto;
     }
 }
 
@@ -120,22 +163,9 @@ body {
 @media (min-aspect-ratio: $jsp-container-ar-middle) and (max-aspect-ratio: $jsp-container-ar-widest) {
     .jsp-container {
         // aspect-ratio: 16/9;
+        height: 100%; // fill
+        width: 100%; // fill
         flex-direction: column;
-        height: 100vh;
-        max-width: 100vw; // no wider than viewport - unit vw
-    }
-    .jsp-main {
-        // allow width to be smaller for near square viewport
-        height: 100vh;
-        min-width: 80vh;
-        max-width: 100vh;
-        
-    }
-    .jsp-s, .jsp-e {
-        // aspect-ratio: $jsp-ctrl-ar;
-        height: 100vh;
-        // width: 28vw;
-        max-width: 21.875vh;
     }
 }
 
@@ -145,25 +175,22 @@ body {
     .jsp-container {
         // limit container to 16/9 wideness
         aspect-ratio: $jsp-container-ar-widest;
+        height: 100%; // fill
+        width: auto; // rely on aspect ratio
         flex-direction: column;
-        height: 100vh;
-        max-width: 100vw; // no wider than viewport - unit vw
-    }
-    .jsp-main {
-        height: 100vh;
-        width: 100vh; 
-    }
-    .jsp-s, .jsp-e {
-        // aspect-ratio: $jsp-ctrl-ar;
-        height: 100vh;
-        width: 21.875vh;
     }
 }
 
 // always
 
+
+.jsp-window {
+    width: 100%;
+    height: 100%;
+}
+
 .jsp-main {
-    // aspect-ratio: $jsp-main-ar;
+    aspect-ratio: $jsp-main-ar;
     border: 2px white;
 }
 

@@ -14,6 +14,18 @@ window.oncontextmenu = function(event) {
     return false;
 }
 
+////// resize // 
+//// Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event
+addEventListener('resize', (event) => {});
+onresize = (event) => {};
+function reportWindowSize() {
+    const jspWindow = document.getElementById('jsp-window');
+    jspWindow.width = window.innerWidth;
+    jspWindow.height = window.innerHeight;
+}
+window.onresize = reportWindowSize();
+////// resize //
+
 // fullscreen video - based on w3schools tutorial
 // https://www.w3schools.com/howto/howto_js_fullscreen.asp
 const jspViewport = document.getElementById("jsp-viewport");
