@@ -1,5 +1,5 @@
 // global button states. false is released; true is held down.
-let sButtonLeftState = false; 
+let sButtonLeftState = false;
 let sButtonUpState = false;
 let eButtonUpState = false;
 let eButtonRightState = false;
