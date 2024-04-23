@@ -28,14 +28,14 @@ window.onresize = reportWindowSize();
 
 // fullscreen video - based on w3schools tutorial
 // https://www.w3schools.com/howto/howto_js_fullscreen.asp
-const jspViewport = document.getElementById("jsp-viewport");
 function openFullscreen() {
-    if (jspViewport.requestFullscreen) {
-        jspViewport.requestFullscreen(); // standard fullscreen
-    } else if (jspViewport.requestFullscreen) {
-        jspViewport.webkitRequestFullscreen(); // Safari
-    } else if (jspViewport.requestFullscreen) {
-        jspViewport.msRequestFullscreen(); // Internet Explorer
+    const jspWindow = document.getElementById('jsp-window');
+    if (jspWindow.requestFullscreen) {
+        jspWindow.requestFullscreen(); // standard fullscreen
+    } else if (jspWindow.requestFullscreen) {
+        jspWindow.webkitRequestFullscreen(); // Safari
+    } else if (jspWindow.requestFullscreen) {
+        jspWindow.msRequestFullscreen(); // Internet Explorer
     }
 }
 
