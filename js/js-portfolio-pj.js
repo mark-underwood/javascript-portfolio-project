@@ -12,14 +12,13 @@ let eButtonRightState = false;
 ///// by user bbsimonbb on stackoverflow:
 //// https://stackoverflow.com/questions/3413683/disabling-the-context-menu-on-long-taps-on-android
 window.oncontextmenu = function(event) {
-    
     event.preventDefault();
     event.stopPropagation();
     return false;
 }
 
 ////// resize // 
-//// Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event
+///// Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event
 addEventListener('resize', (event) => {});
 onresize = (event) => {};
 function reportWindowSize() {
@@ -61,7 +60,7 @@ function createEventListeners() {
     eBtnRight.addEventListener("pointerup", eButtonRightOff);
 }
 
-/// Start (Left side controller)
+////// Start (Left side controller)
 // Left
 function sButtonLeftAct(event) {
     event.stopPropagation();
@@ -90,7 +89,7 @@ function sButtonUpOff(event) {
     // alert(`s-U: Thrust up off.`);
 }
 
-/// End (Right side controller)
+////// End (Right side controller)
 // Up
 function eButtonUpAct(event) {
     event.stopPropagation();
