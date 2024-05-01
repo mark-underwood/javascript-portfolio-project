@@ -2,6 +2,15 @@
 ///// 2D Movement Reference: https://www.sololearn.com/en/compiler-playground/WUVrS54WbnSg/
 ////
 
+/// gravitational constant: 6.67408*10^-11 N*m^2/kg^2
+// gravitation formula F = G * (m1 * m2) / r^2    a = G * (mass of moon) / r^2
+
+////// Useful Moon facts:
+// surface gravity (g): 1.622 m/s^2
+// mass (m): 7.342*10^22 kg
+// equatorial radius (r): ~1,738,100 m
+// escape velocity (v_esc): 2.38 km/s
+
 // global button states. false is released; true is held down.
 let sButtonLeftState = false;
 let sButtonUpState = false;
