@@ -110,14 +110,16 @@ function gamePhysics() {
         if (mainEngineRamp > mainEngineMaxRamp) {
             mainEngineRamp = mainEngineMaxRamp; // keep below max
         }
-        ////// TEMPORARY ROCK MODE WHEN FOLLOWING LINE DISABLED
-        //linearAccel.y += ( mainEngineAccel / framesPerSecond ) * ( mainEngineRamp / 100 ); // apply engine thrust
     }
+    ////// TEMPORARY ROCK MODE WHEN FOLLOWING LINE DISABLED
+    //linearAccel.y += ( mainEngineAccel / framesPerSecond ) * ( mainEngineRamp / 100 ); // engine thrust
+    
     if (!(sButtonUpState && eButtonUpState)) { // no up demand
         if (mainEngineRamp > 10) { // never go below idle
             mainEngineRamp -= mainEngineRampRate / framesPerSecond; // steadily decrease supplied throttle
         }
     }
+
     // for (axis of linearVelocity) { // this could work with three dimensions too
         // add frame acceleration to velocity vectors.
     let linearVelNaught = {x: linearVelocity.x, y: linearVelocity.y};
