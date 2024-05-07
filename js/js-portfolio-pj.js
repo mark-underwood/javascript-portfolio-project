@@ -34,10 +34,11 @@
 // 2 * 444.8222 Newtons / 4280 kg = 0.207861 m/s^2
 
 // global button states. false is released; true is held down.
-let sButtonLeftState = false;
-let sButtonUpState = false;
-let eButtonUpState = false;
-let eButtonRightState = false;
+let btnState = {sLeft: false, sUp: false, eUp: false, eRight: false};
+// let sButtonLeftState = false;
+// let sButtonUpState = false;
+// let eButtonUpState = false;
+// let eButtonRightState = false;
 let gameTime = 0; // number of seconds since game start
 let gameFrames = 0; // number of physics frames since game start
 let gaming; // initialize the timeInterval
@@ -92,14 +93,19 @@ function gamePhysics() {
     // [x,y] inertia means default acceleration is zero
     // only near object physics is considered.
     
+    let btnSnapShot = btnState; // snapshot state of the buttons
+
     linearAccel.y -= lunarGravityAccel / framesPerSecond; // apply gravity due to moon
-    if (sButtonLeftState) {
+    if (btnSnapShot.sLeft) {
+    // if (sButtonLeftState) {
         linearAccel.x -= rcsTwinAccel / framesPerSecond; // accel leftward
     }
-    if (eButtonRightState) {
+    if (btnSnapShot.eRight) {
+    // if (eButtonRightState) {
         linearAccel.x += rcsTwinAccel / framesPerSecond; // accel rightward
     }
-    if (sButtonUpState || eButtonUpState) {
+    if (btnSnapShot.sUp || btnSnapShot.eUp) {
+    // if (sButtonUpState || eButtonUpState) {
         if (mainEngineRamp < mainEngineMaxRamp) {
             if ((mainEngineRampRate / framesPerSecond) >= (mainEngineMaxRamp - mainEngineMinRamp)) {
                 mainEngineRamp = mainEngineMaxRamp; // keep below max in case ramp rate is changed higher
@@ -112,9 +118,10 @@ function gamePhysics() {
         }
     }
     ////// TEMPORARY ROCK MODE WHEN FOLLOWING LINE DISABLED
-    //linearAccel.y += ( mainEngineAccel / framesPerSecond ) * ( mainEngineRamp / 100 ); // engine thrust
+    // linearAccel.y += ( mainEngineAccel / framesPerSecond ) * ( mainEngineRamp / 100 ); // engine thrust
     
-    if (!(sButtonUpState && eButtonUpState)) { // no up demand
+    if (!(btnSnapShot.sUp && btnSnapShot.eUp)) { // no up demand
+    // if (!(sButtonUpState && eButtonUpState)) { // no up demand
         if (mainEngineRamp > 10) { // never go below idle
             mainEngineRamp -= mainEngineRampRate / framesPerSecond; // steadily decrease supplied throttle
         }
@@ -133,7 +140,8 @@ function gamePhysics() {
     linearPosition.y += linearVelNaught.y * frameTimeSeconds + 0.5 * linearAccel.y * frameTimeSeconds ** 2;
     // linearPosition.z += linearVelNaught.z * frameTime + 0.5 * linearAccel.z * frameTime**2;
 
-    console.log(`Y-Pos: ${Math.floor(linearPosition.y)}\nY-Vel: ${Math.floor(linearVelocity.y)}`); // y pos & vel
+    // console.log(`Y-Pos: ${Math.floor(linearPosition.y)}\nY-Vel: ${Math.floor(linearVelocity.y)}`); // y pos & vel
+    console.log(`\nY-Pos: ${linearPosition.y}\nY-Vel: ${linearVelocity.y}`); // y 
 
     // console.log(`Linear position X=${linearPosition.x} Y=${linearPosition.y}`); // position
     // console.log(`Linear velocity X=${linearVelocity.x} Y=${linearVelocity.y}`); // velocity
@@ -144,6 +152,15 @@ function gamePhysics() {
     console.log(`Game was running for ${gameTime} seconds\n  at frame ${gameFrames}`);
     
     drawFrame(); // update graphics
+
+    //// debug only - stop after x limit
+    const limiter = 61;
+    if (gameFrames >= limiter) {
+        clearInterval(gaming);
+        alert(`Stopping after ${limiter} frames`);
+        return true;
+    }
+    //// END debug only
 
     // test for win and fail conditions
     if (10 > linearVelocity.y > 10 && linearPosition.y <= landerDim.y + linearVelocity.y) {
@@ -231,13 +248,15 @@ function createEventListeners() {
 function sButtonLeftAct(event) {
     event.stopPropagation();
     console.log(`s-L: Thrust left activated.`);
-    sButtonLeftState = true;
+    btnState.sLeft = true;
+    // sButtonLeftState = true;
     // alert(`s-L: Thrust left activated.`);
 }
 function sButtonLeftOff(event) {
     event.stopPropagation();
     console.log(`s-L: Thrust left off.`);
-    sButtonLeftState = false;
+    btnState.sLeft = false;
+    // sButtonLeftState = false;
     // alert(`s-L: Thrust left off.`);
 }
 
@@ -245,13 +264,15 @@ function sButtonLeftOff(event) {
 function sButtonUpAct(event) {
     event.stopPropagation();
     console.log(`s-U: Thrust up activated.`);
-    sButtonUpState = true;
+    btnState.sUp = true;
+    // sButtonUpState = true;
     // alert(`s-U: Thrust up activated.`);
 }
 function sButtonUpOff(event) {
     event.stopPropagation();
     console.log(`s-U: Thrust up off.`);
-    sButtonUpState = false;
+    btnState.sUp = false;
+    // sButtonUpState = false;
     // alert(`s-U: Thrust up off.`);
 }
 
@@ -260,13 +281,15 @@ function sButtonUpOff(event) {
 function eButtonUpAct(event) {
     event.stopPropagation();
     console.log(`e-U: Thrust up activated.`);
-    eButtonUpState = true;
+    btnState.eUp = true;
+    // eButtonUpState = true;
     // alert(`e-U: Thrust up activated.`);
 }
 function eButtonUpOff(event) {
     event.stopPropagation();
     console.log(`e-U: Thrust up off.`);
-    eButtonUpState = false;
+    btnState.eUp = false;
+    // eButtonUpState = false;
     // alert(`e-U: Thrust up off.`);
 }
 
@@ -274,13 +297,15 @@ function eButtonUpOff(event) {
 function eButtonRightAct(event) {
     event.stopPropagation();
     console.log(`e-R: Thrust right activated.`);
-    eButtonRightState = true;
+    btnState.eRight = true;
+    // eButtonRightState = true;
     // alert(`e-R: Thrust right activated.`);
 }
 function eButtonRightOff(event) {
     event.stopPropagation();
     console.log(`e-R: Thrust right off.`);
-    eButtonRightState = false;
+    btnState.eRight = false;
+    // eButtonRightState = false;
     // alert(`e-R: Thrust right off.`);
 }
 
