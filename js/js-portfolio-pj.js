@@ -33,6 +33,8 @@
 // full force of RCS thrusters in one direction:
 // 2 * 444.8222 Newtons / 4280 kg = 0.207861 m/s^2
 
+
+const debugMode = true; // verbose console messages
 // global button states. false is released; true is held down.
 let btnState = {sLeft: false, sUp: false, eUp: false, eRight: false};
 // let sButtonLeftState = false;
@@ -45,7 +47,7 @@ let gaming; // initialize the timeInterval
 const framesPerSecond = 60; // physics frames per second
 const frameTimeSeconds = 1 / framesPerSecond;
 // const frameRate = framesPerSecond * 1000; // frames rate per millisecond
-const frameTime = 1000 / framesPerSecond; // milliseconds to delay
+const frameTimeMilliSec = 1000 / framesPerSecond; // milliseconds to delay
 const lunarGravityAccel = 1.622; // m/s^2
 let massLander = 5000; // kilograms (4280 kg dry, 10334 kg full)
 const landerDim = {x: 9.4, y: 7.04}; // width w/ gear deployed, height (meters)
@@ -92,6 +94,7 @@ class gameNormal {
 function gamePhysics() {
     // [x,y] inertia means default acceleration is zero
     // only near object physics is considered.
+    linearAccel = {x: 0, y: 0} // reset accel to zero
     
     let btnSnapShot = btnState; // snapshot state of the buttons
 
@@ -127,68 +130,69 @@ function gamePhysics() {
         }
     }
 
-    // for (axis of linearVelocity) { // this could work with three dimensions too
-        // add frame acceleration to velocity vectors.
     let linearVelNaught = {x: linearVelocity.x, y: linearVelocity.y};
     
+    ////// Change in velocity with constant acceleration over the frameTime
     // Kinematic Eq #1: v = v.naught + a * t
     linearVelocity.x = linearVelNaught.x + linearAccel.x * frameTimeSeconds;
     linearVelocity.y = linearVelNaught.y + linearAccel.y * frameTimeSeconds;
 
-    // Kinematic Eq #3: y.delta = v.naught
+    ////// Change in position with constant acceleration over the frameTime
+    // Kinematic Eq #3: y.delta = v.naught * t + 1/2 * a * t^2
     linearPosition.x += linearVelNaught.x * frameTimeSeconds + 0.5 * linearAccel.x * frameTimeSeconds ** 2;
     linearPosition.y += linearVelNaught.y * frameTimeSeconds + 0.5 * linearAccel.y * frameTimeSeconds ** 2;
-    // linearPosition.z += linearVelNaught.z * frameTime + 0.5 * linearAccel.z * frameTime**2;
 
-    // console.log(`Y-Pos: ${Math.floor(linearPosition.y)}\nY-Vel: ${Math.floor(linearVelocity.y)}`); // y pos & vel
-    console.log(`\nY-Pos: ${linearPosition.y}\nY-Vel: ${linearVelocity.y}`); // y 
-
-    // console.log(`Linear position X=${linearPosition.x} Y=${linearPosition.y}`); // position
-    // console.log(`Linear velocity X=${linearVelocity.x} Y=${linearVelocity.y}`); // velocity
-    // console.log(`Linear acceleration X=${linearAccel.x} Y=${linearAccel.y}`); // acceleration
-
-    gameTime += frameTime / 1000;
+    // advance counters
+    gameTime += frameTimeSeconds;
     gameFrames++;
-    console.log(`Game was running for ${gameTime} seconds\n  at frame ${gameFrames}`);
-    
-    drawFrame(); // update graphics
 
-    //// debug only - stop after x limit
-    const limiter = 61;
-    if (gameFrames >= limiter) {
-        clearInterval(gaming);
-        alert(`Stopping after ${limiter} frames`);
-        return true;
+    if (debugMode) {
+        // console.log(`Y-Pos: ${Math.floor(linearPosition.y)}\nY-Vel: ${Math.floor(linearVelocity.y)}`); // y pos & vel
+        console.log(`sLeft: ${btnSnapShot.sLeft}\nsUp: ${btnSnapShot.sUp}\neUp: ${btnSnapShot.eUp}\neRight: ${btnSnapShot.eRight}\nY-Pos: ${linearPosition.y}\nY-Vel_0: ${linearVelNaught.y}\nY-Accel ${linearAccel.y}\nY-SpImp ${linearAccel.y * frameTimeSeconds}\nY-Vel: ${linearVelocity.y}`);
+
+        // console.log(`Linear position X=${linearPosition.x} Y=${linearPosition.y}`); // position
+        // console.log(`Linear velocity X=${linearVelocity.x} Y=${linearVelocity.y}`); // velocity
+        // console.log(`Linear acceleration X=${linearAccel.x} Y=${linearAccel.y}`); // acceleration
+
+        console.log(`Game was running for ${gameTime} seconds\n  at frame ${gameFrames}`);
+
+        ////// stop EARLY after x limit
+        // const limiter = 71;
+        // if (gameFrames >= limiter) {
+        //     clearInterval(gaming);
+        //     alert(`Stopping after ${limiter} frames`);
+        //     return true;
+        // }
     }
-    //// END debug only
 
     // test for win and fail conditions
-    if (10 > linearVelocity.y > 10 && linearPosition.y <= landerDim.y + linearVelocity.y) {
+    if (10 > linearVelocity.y && linearVelocity.y > 10 && linearPosition.y <= 0 - linearVelocity.y) {
         clearInterval(gaming);
         alert(`CRASH`);
         return false;
-    } else if (-1 > linearVelocity.y > 1 && linearPosition.y <= landerDim.y + linearVelocity.y) {
+    } else if (-1 > linearVelocity.y && linearVelocity.y > 1 && linearPosition.y <= 0 - linearVelocity.y) {
         clearInterval(gaming);
         alert(`SEVERE DAMAGE`);
         return false;
-    } else if (-1 <= linearVelocity.y <= 1 && linearPosition.y <= landerDim.y + linearVelocity.y) {
+    } else if (-1 <= linearVelocity.y && linearVelocity.y <= 1 && linearPosition.y <= 0 - linearVelocity.y) {
         clearInterval(gaming);
         alert(`Tranquility base here. The Eagle has landed!`);
         return true;
     }
     if (linearPosition.y < 0) {
         clearInterval(gaming)
-        console.log(`Final position ${linearPosition.y} is below zero!`);
+        alert(`Final position ${linearPosition.y} is below zero!`);
         return false;
     }
+    drawFrame(); // update graphics
 }
 
 function drawFrame() {
-    // update graphics positions
+    // update graphic positions
 }
 
 function gameLoop() {
-    gaming = setInterval(gamePhysics, frameTime);
+    gaming = setInterval(gamePhysics, frameTimeMilliSec);
 }
 
 ////// solution to prevent long press menu on touch devices
