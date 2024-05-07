@@ -94,18 +94,23 @@ class gameNormal {
 function gamePhysics() {
     // [x,y] inertia means default acceleration is zero
     // only near object physics is considered.
+
+    // NOTE: linearAccel is in terms of WHOLE SECONDS. Kinematic equations consider frameTime.
     linearAccel = {x: 0, y: 0} // reset accel to zero
     
     let btnSnapShot = btnState; // snapshot state of the buttons
 
-    linearAccel.y -= lunarGravityAccel / framesPerSecond; // apply gravity due to moon
+    // linearAccel.y -= lunarGravityAccel / framesPerSecond; // apply gravity due to moon
+    linearAccel.y -= lunarGravityAccel; // apply gravity due to moon
     if (btnSnapShot.sLeft) {
     // if (sButtonLeftState) {
-        linearAccel.x -= rcsTwinAccel / framesPerSecond; // accel leftward
+        // linearAccel.x -= rcsTwinAccel / framesPerSecond; // accel leftward
+        linearAccel.x -= rcsTwinAccel; // accel leftward
     }
     if (btnSnapShot.eRight) {
     // if (eButtonRightState) {
-        linearAccel.x += rcsTwinAccel / framesPerSecond; // accel rightward
+        // linearAccel.x += rcsTwinAccel / framesPerSecond; // accel rightward
+        linearAccel.x += rcsTwinAccel; // accel rightward
     }
     if (btnSnapShot.sUp || btnSnapShot.eUp) {
     // if (sButtonUpState || eButtonUpState) {
@@ -113,7 +118,8 @@ function gamePhysics() {
             if ((mainEngineRampRate / framesPerSecond) >= (mainEngineMaxRamp - mainEngineMinRamp)) {
                 mainEngineRamp = mainEngineMaxRamp; // keep below max in case ramp rate is changed higher
             } else {
-            mainEngineRamp += mainEngineRampRate / framesPerSecond; // steadily increase supplied throttle
+            // mainEngineRamp += mainEngineRampRate / framesPerSecond; // steadily increase supplied throttle
+            mainEngineRamp += mainEngineRampRate; // steadily increase supplied throttle
             }
         }
         if (mainEngineRamp > mainEngineMaxRamp) {
@@ -122,6 +128,7 @@ function gamePhysics() {
     }
     ////// TEMPORARY ROCK MODE WHEN FOLLOWING LINE DISABLED
     // linearAccel.y += ( mainEngineAccel / framesPerSecond ) * ( mainEngineRamp / 100 ); // engine thrust
+    linearAccel.y += ( mainEngineAccel ) * ( mainEngineRamp / 100 ); // engine thrust
     
     if (!(btnSnapShot.sUp && btnSnapShot.eUp)) { // no up demand
     // if (!(sButtonUpState && eButtonUpState)) { // no up demand
@@ -148,7 +155,7 @@ function gamePhysics() {
 
     if (debugMode) {
         // console.log(`Y-Pos: ${Math.floor(linearPosition.y)}\nY-Vel: ${Math.floor(linearVelocity.y)}`); // y pos & vel
-        console.log(`sLeft: ${btnSnapShot.sLeft}\nsUp: ${btnSnapShot.sUp}\neUp: ${btnSnapShot.eUp}\neRight: ${btnSnapShot.eRight}\nY-Pos: ${linearPosition.y}\nY-Vel_0: ${linearVelNaught.y}\nY-Accel ${linearAccel.y}\nY-SpImp ${linearAccel.y * frameTimeSeconds}\nY-Vel: ${linearVelocity.y}`);
+        console.log(`sLeft: ${btnSnapShot.sLeft}\nsUp: ${btnSnapShot.sUp}\neUp: ${btnSnapShot.eUp}\neRight: ${btnSnapShot.eRight}\nY-Pos: ${linearPosition.y}\nY-Vel_0: ${linearVelNaught.y}\nY-Accel ${linearAccel.y}\nY-frameAccel ${linearAccel.y * frameTimeSeconds}\nY-Vel: ${linearVelocity.y}`);
 
         // console.log(`Linear position X=${linearPosition.x} Y=${linearPosition.y}`); // position
         // console.log(`Linear velocity X=${linearVelocity.x} Y=${linearVelocity.y}`); // velocity
