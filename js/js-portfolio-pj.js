@@ -167,11 +167,11 @@ function gamePhysics() {
 
     if (-3.6576 > linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
-        alert(`LANDER DESTROYED\n\nR.I.P.`);
+        alert(`LANDER DESTROYED\n\nYOU DIED\n\nR.I.P.`);
         return false;
     } else if (-1.8288 > linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
-        alert(`Descent stage was DESTROYED! Ascent stage is DAMAGED !!!\n\nR.I.P.`);
+        alert(`Descent stage was DESTROYED! Ascent stage is DAMAGED !!!\n\nYou knew there could be no rescue.\n\nR.I.P.`);
         return false;
     } else if (-0.9144 > linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
