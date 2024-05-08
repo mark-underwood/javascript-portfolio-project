@@ -171,7 +171,7 @@ function gamePhysics() {
         return false;
     } else if (-1.8288 > linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
-        alert(`Descent stage was DESTROYED! Ascent stage is damaged !!!\n\nR.I.P.`);
+        alert(`Descent stage was DESTROYED! Ascent stage is DAMAGED !!!\n\nR.I.P.`);
         return false;
     } else if (-0.9144 > linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
@@ -179,7 +179,7 @@ function gamePhysics() {
         return false;
     } else if (-0.9144 <= linearVelocity.y && linearPosition.y <= 0) {
         clearInterval(gaming);
-        alert(`Tranquility base here. The Eagle has landed!`);
+        alert(`Tranquility base here. The Eagle has LANDED!`);
         return true;
     }
     if (linearPosition.y < 0) {
