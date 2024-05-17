@@ -49,7 +49,7 @@ const landerDim = {x: 9.4, y: 7.04}; // width w/ gear deployed, height (meters)
 
 // rcs - two per direction
 const rcsTwinNewtons = 2 * 444.8222; // Newtons
-let rcsTwinAccel = rcsTwinNewtons / massLander; // m/s^2
+let rcsTwinAccel; // rcsTwinNewtons / massLander; // m/s^2
 
 // main engine
 const mainEngineNewtons = 16000; // Newtons
@@ -57,11 +57,11 @@ const mainEngineMinRamp = 10; // idle percent*100
 let mainEngineRamp = mainEngineMinRamp; // start at idle
 const mainEngineMaxRamp = 60; // maximum percent*100 allowed
 const mainEngineRampRate = 90 * frameTimeSeconds; // percent*100 change per physics frame
-let mainEngineAccel = mainEngineNewtons / massLander;
+let mainEngineAccel; // mainEngineNewtons / massLander;
 
 // initial physics
 let linearPosition = {x: 0, y: 0}; // initialize position of lander
-linearPosition.x = Math.random() * 200 - 100; // randomize horizontal position a bit
+linearPosition.x = 200 * ( Math.random() - 0.5 ); // randomize horizontal position a bit
 linearPosition.y = 400; // meters above *surface
 let linearVelocity = {x: 0, y: 0}; // hover start - m/s
 let linearAccel = {x: 0, y: 0}; // linearAccel tracks cumulative acceleration over the physics frame
@@ -92,6 +92,10 @@ function gamePhysics() {
     linearAccel = {x: 0, y: 0} // reset accel to zero
     
     let btnSnapShot = btnState; // snapshot state of the buttons
+
+    // reconsider acceleration; a = F / m
+    rcsTwinAccel = rcsTwinNewtons / massLander; // m/s^2
+    mainEngineAccel = mainEngineNewtons / massLander; // m/s^2
 
     linearAccel.y -= lunarGravityAccel; // apply gravity due to moon
 
